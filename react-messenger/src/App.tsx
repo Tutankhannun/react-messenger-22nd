@@ -20,15 +20,14 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             {/* 탭 루트들 */}
             <Route index element={<FriendPage />} />
-            <Route path="chatList" element={<ChatsList />} />
+            <Route path="chats" element={<ChatsList />} />
             <Route path="openChat" element={<OpenChatPage />} />
             <Route path="shop" element={<ShopPage />} />
             <Route path="more" element={<MorePage />} />
-
-            {/* 상세 */}
-            <Route path="chats/:chatId" element={<ChatRoom />} />
-            <Route path="profile/:userId" element={<ProfilePage />} />
           </Route>
+          {/* 상세 */}
+          <Route path="profile/:userId" element={<ProfilePage />} />
+          <Route path="/chats/:id" element={<ChatRoom />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

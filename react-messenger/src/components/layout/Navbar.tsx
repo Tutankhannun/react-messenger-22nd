@@ -34,7 +34,7 @@ const items: NavItem[] = [
   {
     id: "chat",
     label: "채팅",
-    to: "/chatList",
+    to: "/chats",
     defaultIcon: ChatDefault,
     pressedIcon: ChatPressed,
   },
@@ -63,7 +63,7 @@ const items: NavItem[] = [
 
 const Navbar = () => {
   return (
-    <nav className="h-[84px] w-full bg-white border-t border-neutral-200 flex items-center">
+    <nav className="absolute bottom-0 h-[84px] w-full bg-white border-t border-neutral-200 flex items-center">
       <div className="w-full flex justify-around -translate-y-2.5">
         {items.map((it) => {
           return (

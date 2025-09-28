@@ -1,10 +1,34 @@
 import React, { useEffect, useState } from "react";
 import type { Friend } from "../types/friend";
 import { FriendItem } from "../components/friends/FriendItem";
-import Header from "../components/layout/Header";
+import { useHeader } from "../views/Layout";
+
+import SearchIcon from "../assets/icons/Buttons/header/search.svg?react";
+import AddFriendIcon from "../assets/icons/Buttons/header/addFriend.svg?react";
+import SettingsIcon from "../assets/icons/Buttons/header/setting.svg?react";
 
 const FriendsPage: React.FC = () => {
   const [friends, setFriends] = useState<Friend[]>([]);
+
+  const setHeader = useHeader();
+  useEffect(() => {
+    setHeader({
+      title: "친구",
+      right: (
+        <>
+          <button aria-label="검색">
+            <SearchIcon />
+          </button>
+          <button aria-label="친구추가">
+            <AddFriendIcon />
+          </button>
+          <button aria-label="설정">
+            <SettingsIcon />
+          </button>
+        </>
+      ),
+    });
+  }, [setHeader]);
 
   // JSON 불러오기
   useEffect(() => {
@@ -16,9 +40,6 @@ const FriendsPage: React.FC = () => {
 
   return (
     <div className="mx-auto w-[375px] h-[812px] bg-white flex flex-col">
-      {/* 헤더 */}
-      <Header title="친구" />
-
       {/* 친구 리스트 */}
       <div className="flex-1 overflow-y-auto">
         <div className="w-[343px] mx-auto ">

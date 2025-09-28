@@ -1,21 +1,51 @@
-import { Outlet } from "react-router-dom";
+import { useState } from "react";
+import { Outlet, useOutletContext } from "react-router-dom";
+
 import Container from "../components/layout/Container";
 import Content from "../components/layout/Content";
 import Navbar from "../components/layout/Navbar";
+import Header from "../components/layout/Header";
 import StatusBar from "../assets/statusBar/StatusBar.svg?react";
 
+// 자식 페이지에서 Header를 제어하기 위한 타입과 커스텀 훅
+type HeaderContextType = (options: {
+  title: string;
+  left?: React.ReactNode;
+  right?: React.ReactNode;
+}) => void;
+
+export function useHeader() {
+  return useOutletContext<HeaderContextType>();
+}
+
 const Layout = () => {
+  // Layout이 Header의 상태(제목, 아이콘)를 직접 관리
+  const [headerOptions, setHeaderOptions] = useState({
+    title: "",
+    left: undefined,
+    right: undefined,
+  });
+
   return (
     <Container>
-      <StatusBar className="absolute inset-x-0 w-full h-[43px] z-10 pointer-events-none" />
+      <StatusBar className="absolute inset-x-0 top-0 w-full h-[43px] z-50 pointer-events-none" />
+
+      {/* StatusBar 바로 밑에 Header를 고정 배치 */}
+      <Header
+        title={headerOptions.title}
+        left={headerOptions.left}
+        right={headerOptions.right}
+      />
+
       <Content>
-        <div className="pt-[44px] pb-[84px]">
-          <Outlet />
+        {/* 페이지 내용이 Header(48px)와 Navbar(84px)에 가려지지 않도록 여백*/}
+        <div className="pt-[48px] pb-[84px] h-full">
+          {/* Outlet을 통해 자식 페이지들에게 setHeaderOptions 함수를 전달 */}
+          <Outlet context={setHeaderOptions} />
         </div>
       </Content>
-      <div className="absolute bottom-0 left-0 right-0">
-        <Navbar />
-      </div>
+
+      <Navbar />
     </Container>
   );
 };

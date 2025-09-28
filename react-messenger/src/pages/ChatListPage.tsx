@@ -1,6 +1,11 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import type { ChatPreview } from "../types/chat";
-import Header from "../components/layout/Header";
+import { useHeader } from "../views/Layout";
+
+import SearchIcon from "../assets/icons/Buttons/header/search.svg?react";
+import AddFriendIcon from "../assets/icons/Buttons/header/addFriend.svg?react";
+import SettingsIcon from "../assets/icons/Buttons/header/setting.svg?react";
 
 const LIST: ChatPreview[] = [
   {
@@ -18,12 +23,29 @@ const LIST: ChatPreview[] = [
 ];
 
 const ChatsList = () => {
+  const setHeader = useHeader();
+  useEffect(() => {
+    setHeader({
+      title: "채팅",
+      right: (
+        <>
+          <button aria-label="검색">
+            <SearchIcon />
+          </button>
+          <button aria-label="채팅추가">
+            <AddFriendIcon />
+          </button>
+          <button aria-label="설정">
+            <SettingsIcon />
+          </button>
+        </>
+      ),
+    });
+  }, [setHeader]);
+
   return (
     <div className="w-full h-full flex flex-col items-center">
-      {/* 가로 343 고정 */}
       <div className="w-[343px] flex-1 py-4">
-        <Header title="채팅" />
-
         <ul className="divide-y-0">
           {LIST.map((c) => (
             <li key={c.id}>
