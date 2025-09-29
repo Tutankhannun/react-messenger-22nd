@@ -35,8 +35,8 @@ const Bubble = ({
 
   if (me) {
     return (
-      <div className="w-full flex items-end gap-2 flex-row-reverse">
-        <div className="max-w-[70%] rounded-2xl px-3 py-2 text-sm leading-snug bg-white border border-[#ECEEF0] rounded-tr-none">
+      <div className="w-full flex items-end gap-2 flex-row-reverse flex-1">
+        <div className=" max-w-[70%] rounded-2xl px-3 py-2 text-sm leading-snug bg-white border border-[#ECEEF0] rounded-tr-none">
           <p className="break-words">{text}</p>
         </div>
         <p className="text-[10px] text-gray-500 flex-shrink-0 pb-1">{`${hh}:${mm}`}</p>
@@ -60,9 +60,9 @@ const Bubble = ({
         )}
       </div>
       {/* 이름과 말풍선 */}
-      <div className="flex flex-col items-start">
+      <div className="flex flex-col items-start flex-1">
         <p className="text-[#6F7173] text-sm font-semibold mb-1">{name}</p>
-        <div className="flex items-end gap-2">
+        <div className="flex items-end gap-2 w-full">
           <div className="max-w-[80%] rounded-2xl px-3 py-2 text-sm leading-snug bg-white border border-[#ECEEF0] rounded-tl-none">
             <p className="break-words">{text}</p>
           </div>
