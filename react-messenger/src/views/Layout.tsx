@@ -29,14 +29,12 @@ const Layout = () => {
   return (
     <Container>
       <StatusBar className="absolute inset-x-0 top-0 w-full h-[43px] z-50 pointer-events-none" />
-
       {/* StatusBar 바로 밑에 Header를 고정 배치 */}
       <Header
         title={headerOptions.title}
         left={headerOptions.left}
         right={headerOptions.right}
       />
-
       <Content>
         {/* 페이지 내용이 Header(48px)와 Navbar(84px)에 가려지지 않도록 여백*/}
         <div className="pt-[48px] pb-[84px] h-full">

@@ -1,5 +1,5 @@
-<svg width="80" height="88" viewBox="0 0 80 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-<foreignObject x="-42" y="-36" width="160" height="160"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(30px);clip-path:url(#bgblur_0_47_876_clip_path);height:100%;width:100%"></div></foreignObject><g filter="url(#filter0_d_47_876)" data-figma-bg-blur-radius="60">
+<svg width="80" height="86" viewBox="16 22 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+<foreignObject x="-40" y="-40" width="160" height="160"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(30px);clip-path:url(#bgblur_0_47_876_clip_path);height:100%;width:100%"></div></foreignObject><g filter="url(#filter0_d_47_876)" data-figma-bg-blur-radius="60">
 <mask id="path-1-inside-1_47_876" fill="white">
 <path d="M18 44C18 32.9543 26.9543 24 38 24C49.0457 24 58 32.9543 58 44C58 55.0457 49.0457 64 38 64C26.9543 64 18 55.0457 18 44Z"/>
 </mask>
