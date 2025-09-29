@@ -17,13 +17,13 @@ const FriendsPage: React.FC = () => {
       right: (
         <>
           <button aria-label="검색">
-            <SearchIcon />
+            <SearchIcon className="flex items-center justify-center w-[32px] h-[32px]" />
           </button>
           <button aria-label="친구추가">
-            <AddFriendIcon />
+            <AddFriendIcon className="flex items-center justify-center w-[32px] h-[32px]" />
           </button>
           <button aria-label="설정">
-            <SettingsIcon />
+            <SettingsIcon className="flex items-center justify-center w-[32px] h-[32px]" />
           </button>
         </>
       ),
