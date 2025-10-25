@@ -1,0 +1,238 @@
+@import "tailwindcss";
+@import "./font.css";
+
+@theme {
+  /* ===== Phone Spacing ===== */
+  --spacing-phone-width: 375px;
+  --spacing-phone-height: 812px;
+  --spacing-phone-margin: 16px;
+
+  /* ===== StatusBar,Header,NavBar, chatsend Height ===== */
+  --statusbar-height: 43px;
+  --navbar-height: 84px;
+  --chatRoomBottom-height: 80px;
+  --chatSendbar-height: 44px;
+
+  /* ===== Common sizes ===== */
+  --size-avatar-sm: 32px;
+  --size-avatar-md: 48px;
+  --size-avatar-lg: 56px;
+
+  --size-icon-xs: 26px;
+  --size-icon-sm: 28px;
+  --size-icon-md: 32px; /* general big icon */
+  --size-icon-lg: 44px;
+  --size-icon-xl: 48px;
+
+  /* ===== Colors ===== */
+  /* Main / B&W */
+  --color-main-blue: #1a75ff;
+  --color-main-blue-light: #eaf2fe;
+  --color-black: #000a19;
+  --color-white: #ffffff;
+
+  /* ===== Grayscale ===== */
+  --color-grey-00: #0b0e0f;
+  --color-grey-01: #242628;
+  --color-grey-02: #3d3f41;
+  --color-grey-03: #56585a;
+  --color-grey-04: #6f7173;
+  --color-grey-05: #888a8c;
+  --color-grey-06: #a1a3a5;
+  --color-grey-07: #babcbe;
+  --color-grey-08: #e4e4e4;
+  --color-grey-09: #eceef0;
+  --color-grey-10: #f6f8fa;
+  --color-grey-11: #f9fafb;
+
+  /* ===== Bluescale ===== */
+  --color-blue-00: #001536;
+  --color-blue-01: #002966;
+  --color-blue-02: #003e9c;
+  --color-blue-03: #0054d1;
+  --color-blue-04: #005eeb;
+  --color-blue-05: #0066ff;
+  --color-blue-06: #1a75ff;
+  --color-blue-07: #3385ff;
+  --color-blue-08: #69a5ff;
+  --color-blue-09: #9ec5ff;
+  --color-blue-10: #c9defe;
+  --color-blue-11: #eaf2fe;
+
+  /* ===== Semantic ===== */
+  --color-fill-normal: #ffffff;
+  --color-fill-strong: #f9fafb;
+  --color-fill-hover: #eceef0;
+  --color-fill-inactive: #f6f8fa;
+  --color-fill-primary: #1a75ff;
+  --color-fill-primary-assistive: #f7fbff;
+  --color-fill-primary-interactive: #005eeb;
+
+  --color-icon-strong: #3d3f41;
+  --color-icon-normal: #6f7173;
+  --color-icon-assistive: #babcbe;
+  --color-icon-inverse: #ffffff;
+  --color-icon-primary: #1a75ff;
+  --color-icon-primary-interactive: #005eeb;
+
+  --color-text-strong: #242628;
+  --color-text-normal: #3d3f41;
+  --color-text-assistive: #6f7173;
+  --color-text-inverse: #ffffff;
+  --color-text-primary: #1a75ff;
+
+  --color-line-strong: #e4e4e4;
+  --color-line-normal: #eceef0;
+  --color-line-assistive: #f6f8fa;
+  --color-line-inverse: #ffffff;
+
+  /* ===== Typography ===== */
+  /* headline: 22px / 34px / -2%  */
+  --font-size-headline: 22px;
+  --font-weight-headline: 500;
+  --leading-headline: 34px;
+  --tracking-headline: -0.02em;
+
+  /* title-lg: 18px / 28px / -2% */
+  --font-size-title-lg: 18px;
+  --font-weight-title-lg: 600;
+  --leading-title-lg: 28px;
+  --tracking-title-lg: -0.02em;
+
+  /* title-md: 16px / 24px / -2% */
+  --font-size-title-md: 16px;
+  --font-wheight-title-md: 500;
+  --leading-title-md: 24px;
+  --tracking-title-md: -0.02em;
+
+  /* title-sm: 14px / 22px / -2% */
+  --font-size-title-sm: 14px;
+  --font-weight-title-sm: 600;
+  --leading-title-sm: 22px;
+  --tracking-title-sm: -0.02em;
+
+  /* body-md: 14px / 22px / -2% */
+  --font-size-body-md: 14px;
+  --font-wheight-body-md: 400;
+  --leading-body-md: 22px;
+  --tracking-body-md: -0.02em;
+
+  /* body-sm: 12px / 18px / -2% */
+  --font-size-body-sm: 12px;
+  --font-wheight-body-sm: 400;
+  --leading-body-sm: 18px;
+  --tracking-body-sm: -0.02em;
+
+  /* ===== Font Family ===== */
+  --font-sans: "Pretendard Variable", "Pretendard", ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    "Apple SD Gothic Neo", "Malgun Gothic", "나눔고딕", "Nanum Gothic",
+    "맑은 고딕", sans-serif;
+}
+
+@layer base {
+  html,
+  body {
+    font-family: var(--font-sans);
+  }
+}
+
+@layer utilities {
+  /* Phone Frame Utility */
+  .phone-frame {
+    width: var(--spacing-phone-width);
+    height: var(--spacing-phone-height);
+  }
+  .app-padding {
+    padding-top: var(--statusbar-height);
+    padding-bottom: var(--navbar-height);
+  }
+
+  /* Layout Utility */
+  .phone-header {
+    width: var(--spacing-phone-width);
+    height: 48px;
+    position: sticky;
+    top: var(--statusbar-height);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 1rem; /* 16px */
+    padding-right: 1rem;
+  }
+
+  /* Avatar & Icon Utility */
+  .avatar-sm {
+    width: var(--size-avatar-sm);
+    height: var(--size-avatar-sm);
+    border-radius: 9999px;
+  }
+  .avatar-md {
+    width: var(--size-avatar-md);
+    height: var(--size-avatar-md);
+    border-radius: 9999px;
+  }
+  .avatar-lg {
+    width: var(--size-avatar-lg);
+    height: var(--size-avatar-lg);
+    border-radius: 9999px;
+  }
+  .icon-xs {
+    width: var(--size-icon-xs);
+    height: var(--size-icon-xs);
+  }
+  .icon-sm {
+    width: var(--size-icon-sm);
+    height: var(--size-icon-sm);
+  }
+  .icon-md {
+    width: var(--size-icon-md);
+    height: var(--size-icon-md);
+  }
+  .icon-lg {
+    width: var(--size-icon-lg);
+    height: var(--size-icon-lg);
+  }
+  .icon-nav {
+    width: var(--size-icon-xl);
+    height: var(--size-icon-lg);
+  }
+  /**/
+  .bg-fill-chatroom {
+    background-color: var(--color-fill-primary-assistive);
+  }
+  /* Text Utility */
+  .text-headline {
+    font-size: var(--font-size-headline);
+    font-weight: var(--font-weight-headline);
+    line-height: var(--leading-headline);
+    letter-spacing: var(--tracking-headline);
+  }
+  .text-title-lg {
+    font-size: var(--font-size-title-lg);
+    font-weight: var(--font-weight-title-lg);
+    line-height: var(--leading-title-lg);
+    letter-spacing: var(--tracking-title-lg);
+  }
+  .text-title-md {
+    font-size: var(--font-size-title-md);
+    line-height: var(--leading-title-md);
+    letter-spacing: var(--tracking-title-md);
+  }
+  .text-title-sm {
+    font-size: var(--font-size-title-sm);
+    line-height: var(--leading-title-sm);
+    letter-spacing: var(--tracking-title-sm);
+  }
+  .text-body-md {
+    font-size: var(--font-size-body-md);
+    line-height: var(--leading-body-md);
+    letter-spacing: var(--tracking-body-md);
+  }
+  .text-body-sm {
+    font-size: var(--font-size-body-sm);
+    line-height: var(--leading-body-sm);
+    letter-spacing: var(--tracking-body-sm);
+  }
+}

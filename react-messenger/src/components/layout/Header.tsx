@@ -14,21 +14,12 @@ const Header: React.FC<Props> = ({ title, left, right }) => {
 
   return (
     <header
-      className={`w-[375px] h-[48px] flex items-center justify-between px-4 sticky top-[44px] z-10 ${
-        isChatRoom ? "bg-[#F7FBFF]" : "bg-white"
-      }`}
+      className={`phone-header ${isChatRoom ? "bg-fill-chatroom" : "bg-white"}`}
     >
-      {" "}
       {/* 왼쪽 & 타이틀 영역 */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center">
         {left}
-        <h1
-          className={`${
-            isChatRoom
-              ? "fomt-bold text-lg leading-[28px]"
-              : "font-bold text-xl leading-[32px]"
-          }`}
-        >
+        <h1 className={`${isChatRoom ? "text-title-lg" : "text-headline"}`}>
           {title}
         </h1>
       </div>

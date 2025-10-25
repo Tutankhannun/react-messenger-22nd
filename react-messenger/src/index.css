@@ -1,24 +1,10 @@
-@import "tailwindcss";
-
-body {
-  letter-spacing: -0.02em;
-}
-
-@font-face {
-  font-family: "Pretendard Variable";
-  src: url("/react-messenger/public/PretendardVariable.woff2")
-    format("woff2-variations");
-  font-weight: 100 900; /* 가변 폰트 전체 범위 */
-  font-display: swap;
-}
-
-@layer base {
+/* @layer base {
   html {
     font-family: "Pretendard Variable", system-ui, -apple-system, "Segoe UI",
       Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic",
       "Helvetica Neue", Arial, sans-serif;
   }
-}
+} */
 
 .loader {
   width: 48px;

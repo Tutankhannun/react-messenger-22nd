@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Outlet, useOutletContext } from "react-router-dom";
 
-import Container from "../components/layout/Container";
-import Content from "../components/layout/Content";
-import Navbar from "../components/layout/Navbar";
-import Header from "../components/layout/Header";
-import StatusBar from "../assets/statusBar/StatusBar.svg?react";
+import Container from "@components/layout/Container";
+import Content from "@components/layout/Content";
+import Navbar from "@components/layout/Navbar";
+import Header from "@components/layout/Header";
+import StatusBar from "@assets/statusBar/StatusBar.svg?react";
 
 // 자식 페이지에서 Header를 제어하기 위한 타입과 커스텀 훅
 type HeaderContextType = (options: {

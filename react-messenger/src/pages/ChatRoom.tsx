@@ -1,20 +1,20 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import type { Message } from "../types/chat";
-import usersData from "../assets/data/userList.json";
-import messagesData from "../assets/data/message.json";
-import Container from "../components/layout/Container";
-import Content from "../components/layout/Content";
-import Header from "../components/layout/Header";
-import StatusBar from "../assets/statusBar/StatusBar.svg?react";
+import type { Message } from "@type/chat";
+import usersData from "@assets/data/userList.json";
+import messagesData from "@assets/data/message.json";
+import Container from "@components/layout/Container";
+import Content from "@components/layout/Content";
+import Header from "@components/layout/Header";
+import StatusBar from "@assets/statusBar/StatusBar.svg?react";
 
-import SearchIcon from "../assets/icons/Buttons/header/search.svg?react";
-import MenuIcon from "../assets/icons/Buttons/header/menu.svg?react";
-import AddIcon from "../assets/icons/ChatInput/add.svg?react";
-import SendActiveIcon from "../assets/icons/ChatInput/sendActive.svg?react";
-import SendDefaultIcon from "../assets/icons/ChatInput/sendDefault.svg?react";
-import BackwardIcon from "../assets/icons/Buttons/header/backward.svg?react";
-import ProfileIcon from "../assets/icons/defaultProfile.svg?react";
+import SearchIcon from "@assets/icons/Buttons/header/search.svg?react";
+import MenuIcon from "@assets/icons/Buttons/header/menu.svg?react";
+import AddIcon from "@assets/icons/ChatInput/add.svg?react";
+import SendActiveIcon from "@assets/icons/ChatInput/sendActive.svg?react";
+import SendDefaultIcon from "@assets/icons/ChatInput/sendDefault.svg?react";
+import BackwardIcon from "@assets/icons/Buttons/header/backward.svg?react";
+import ProfileIcon from "@assets/icons/defaultProfile.svg?react";
 
 const Bubble = ({
   me,
@@ -36,19 +36,18 @@ const Bubble = ({
   if (me) {
     return (
       <div className="w-full flex items-end gap-2 flex-row-reverse flex-1">
-        <div className=" max-w-[70%] rounded-2xl px-3 py-2 text-sm leading-snug bg-white border border-[#ECEEF0] rounded-tr-none">
+        <div className=" max-w-[70%] rounded-2xl px-3 py-2 text-title-md bg-white border border-grey-09 rounded-tr-none">
           <p className="break-words">{text}</p>
         </div>
-        <p className="text-[10px] text-gray-500 flex-shrink-0 pb-1">{`${hh}:${mm}`}</p>
+        <p className="text-body-sm text-gray-500 flex-shrink-0 pb-1">{`${hh}:${mm}`}</p>
       </div>
     );
   }
   // 상대방이 보낸 메시지일 경우
   return (
     <div className="w-full flex items-start gap-3">
-      {" "}
       {/* 프로필 이미지 */}
-      <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+      <div className="avatar-md rounded-full overflow-hidden flex-shrink-0">
         {avatarUrl ? (
           <img
             src={avatarUrl}
@@ -61,12 +60,12 @@ const Bubble = ({
       </div>
       {/* 이름과 말풍선 */}
       <div className="flex flex-col items-start flex-1">
-        <p className="text-[#6F7173] text-sm font-semibold mb-1">{name}</p>
+        <p className="text-gray-600 text-title-sm mb-1">{name}</p>
         <div className="flex items-end gap-2 w-full">
-          <div className="max-w-[80%] rounded-2xl px-3 py-2 text-sm leading-snug bg-white border border-[#ECEEF0] rounded-tl-none">
+          <div className="max-w-[80%] rounded-2xl px-3 py-2 text-title-md bg-white border border-grey-09 rounded-tl-none">
             <p className="break-words">{text}</p>
           </div>
-          <p className="text-[10px] text-gray-500 flex-shrink-0 pb-1">{`${hh}:${mm}`}</p>
+          <p className="text-body-sm text-gray-500 flex-shrink-0 pb-1">{`${hh}:${mm}`}</p>
         </div>
       </div>
     </div>
@@ -126,10 +125,15 @@ const ChatRoom = () => {
   // 메시지 변경 시 로컬스토리지에 저장 + 스크롤 맨 아래로
   useEffect(() => {
     if (!chatId || messages.length === 0) return;
+    // 메시지 저장
     localStorage.setItem(keyOf(chatId), JSON.stringify(messages));
-    requestAnimationFrame(() => {
-      scrollerRef.current?.scrollTo({ top: scrollerRef.current.scrollHeight });
-    });
+    // 스크롤 맨 아래로 + 안정화
+    const el = scrollerRef.current;
+    if (!el) return;
+    const scrollToBottom = () => el.scrollTo({ top: el.scrollHeight });
+    requestAnimationFrame(scrollToBottom);
+    const t = window.setTimeout(scrollToBottom, 80);
+    return () => window.clearTimeout(t);
   }, [chatId, messages]);
 
   const send = () => {
@@ -147,6 +151,7 @@ const ChatRoom = () => {
   };
 
   const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+    if (e.nativeEvent.isComposing) return;
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       send();
@@ -155,33 +160,33 @@ const ChatRoom = () => {
 
   return (
     <Container>
-      <StatusBar className="absolute inset-x-0 top-0 w-full h-[44px] z-50 bg-[#F7FBFF] pointer-events-none" />
+      <StatusBar className="absolute inset-x-0 top-0 w-full h-[var(--statusbar-height)] z-50 bg-fill-chatroom pointer-events-none" />
       <Header
         title={roomName}
         left={
           <Link to="/chats" aria-label="뒤로 가기">
-            <BackwardIcon className="flex items-center justify-center w-[24px] h-[24px]" />
+            <BackwardIcon className="icon-md flex items-center justify-center " />
           </Link>
         }
         right={
           <>
             <button aria-label="검색">
-              <SearchIcon className="flex items-center justify-center w-[32px] h-[32px]" />
+              <SearchIcon className="icon-md flex items-center justify-center " />
             </button>
             <button aria-label="메뉴">
-              <MenuIcon className="flex items-center justify-center w-[32px] h-[32px]" />
+              <MenuIcon className="icon-md flex items-center justify-center " />
             </button>
           </>
         }
-        className="bg-[#F7FBFF]"
+        className="bg-fiil-chartroom"
       />
       <Content>
         {/* Content 내부에 채팅방 UI 전체를 구성합니다. */}
-        <div className="relative w-full h-full bg-[#F7FBFF] pt-[44px] pb-[80px]">
+        <div className="relative w-full h-full bg-fill-chatroom">
           {/* 메시지 스크롤 영역 */}
           <div
             ref={scrollerRef}
-            className="absolute top-12 bottom-[80px] left-0 right-0 overflow-y-auto p-4 space-y-2"
+            className="absolute top-12 bottom-[var(--chatRoomBottom-height)] left-0 right-0 overflow-y-auto p-4 space-y-2"
           >
             {messages.map((m) => (
               <Bubble
@@ -197,23 +202,29 @@ const ChatRoom = () => {
         </div>
       </Content>
       {/* 입력 바 */}
-      <div className="absolute bottom-0 left-0 right-0 h-[80px] flex items-center gap-2 p-4 bg-white z-10">
-        <div className="relative flex-1 flex items-center h-[44px] border-[#ECEEF0] border rounded-full -translate-y-1.5">
-          <button className="absolute left-1 top-1/2 -translate-y-1/2 z-10 ">
-            <AddIcon className="items-center justify-center w-[28px] h-[28px] " />
+      <div className="absolute bottom-0 left-0 right-0 h-[var(--chatRoomBottom-height)] flex items-center gap-2 p-4 bg-white z-10">
+        <div className="relative flex-1 flex items-center h-[var(--chatSendbar-height)] border-grey-09 border rounded-full -translate-y-1.5">
+          <button
+            aria-label="첨부"
+            type="button"
+            className="absolute left-1 top-1/2 -translate-y-1/2 z-10 "
+          >
+            <AddIcon className="icon-sm items-center justify-center " />
           </button>
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={onKeyDown}
             placeholder="메시지 보내기"
-            className="w-full h-full rounded-full pl-11 pr-10 text-sm bg-[#F9FAFB] outline-none"
+            className="w-full h-full rounded-full pl-11 pr-10 text-sm bg-grey-11 outline-none"
           />
         </div>
         <button
+          aria-label="전송"
+          type="button"
           onClick={send}
           disabled={!input.trim()}
-          className="w-[44px] h-[44px] rounded-full -translate-y-1.5 "
+          className="icon-lg rounded-full -translate-y-1.5 "
         >
           {input.trim() ? (
             <SendActiveIcon className="w-full h-full cursor-pointer bg-white" />

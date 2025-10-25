@@ -1,13 +1,13 @@
 import { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { useHeader } from "../views/Layout";
-import usersData from "../assets/data/userList.json";
-import messagesData from "../assets/data/message.json";
+import { useHeader } from "@views/Layout";
+import usersData from "@assets/data/userList.json";
+import messagesData from "@assets/data/message.json";
 
-import SearchIcon from "../assets/icons/Buttons/header/search.svg?react";
-import AddChatIcon from "../assets/icons/Buttons/header/addChat.svg?react";
-import SortIcon from "../assets/icons/Buttons/header/sort.svg?react";
-import ProfileIcon from "../assets/icons/defaultProfile.svg?react";
+import SearchIcon from "@assets/icons/Buttons/header/search.svg?react";
+import AddChatIcon from "@assets/icons/Buttons/header/addChat.svg?react";
+import SortIcon from "@assets/icons/Buttons/header/sort.svg?react";
+import ProfileIcon from "@assets/icons/defaultProfile.svg?react";
 
 const ChatsList = () => {
   const setHeader = useHeader();
