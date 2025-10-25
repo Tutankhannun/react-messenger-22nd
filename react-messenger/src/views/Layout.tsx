@@ -37,7 +37,7 @@ const Layout = () => {
       />
       <Content>
         {/* 페이지 내용이 Header(48px)와 Navbar(84px)에 가려지지 않도록 여백*/}
-        <div className="pt-[48px] pb-[84px] h-full">
+        <div className="h-[var(--content-height)] bottom-[1px] scrollbar-hide">
           {/* Outlet을 통해 자식 페이지들에게 setHeaderOptions 함수를 전달 */}
           <Outlet context={setHeaderOptions} />
         </div>

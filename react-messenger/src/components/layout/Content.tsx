@@ -3,7 +3,11 @@ import type { ReactNode } from "react";
 type Props = { children: ReactNode };
 
 const Content = ({ children }: Props) => {
-  return <main className="h-full overflow-hidden ">{children}</main>;
+  return (
+    <main className=" pt-[var(--header-height)] h-[var(--chatRoomContent-height)] overflow-hidden ">
+      {children}
+    </main>
+  );
 };
 
 export default Content;

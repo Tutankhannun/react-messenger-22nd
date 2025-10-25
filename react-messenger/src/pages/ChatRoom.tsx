@@ -186,7 +186,7 @@ const ChatRoom = () => {
           {/* 메시지 스크롤 영역 */}
           <div
             ref={scrollerRef}
-            className="absolute top-12 bottom-[var(--chatRoomBottom-height)] left-0 right-0 overflow-y-auto p-4 space-y-2"
+            className="absolute top-[1px] bottom-[1px] left-0 right-0 overflow-y-auto p-4 space-y-2 scrollbar-hide"
           >
             {messages.map((m) => (
               <Bubble
@@ -195,7 +195,7 @@ const ChatRoom = () => {
                 text={m.text}
                 time={m.createdAt}
                 name={otherUser?.name || "상대방"}
-                avatarUrl={otherUser?.profileImage}
+                avatarUrl={otherUser?.avatarUrl}
               />
             ))}
           </div>

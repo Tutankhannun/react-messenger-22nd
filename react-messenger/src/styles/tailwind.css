@@ -9,15 +9,24 @@
 
   /* ===== StatusBar,Header,NavBar, chatsend Height ===== */
   --statusbar-height: 43px;
+  --header-height: 48px;
   --navbar-height: 84px;
   --chatRoomBottom-height: 80px;
   --chatSendbar-height: 44px;
+  --content-height: calc(
+    var(--spacing-phone-height) - var(--statusbar-height) - var(--navbar-height) -
+      var(--header-height)
+  );
+  --chatRoomContent-height: calc(
+    var(--spacing-phone-height) - var(--statusbar-height) - var(--navbar-height)
+  );
 
   /* ===== Common sizes ===== */
   --size-avatar-sm: 32px;
   --size-avatar-md: 48px;
   --size-avatar-lg: 56px;
 
+  --size-icon-xxs: 18px;
   --size-icon-xs: 26px;
   --size-icon-sm: 28px;
   --size-icon-md: 32px; /* general big icon */
@@ -151,7 +160,7 @@
   /* Layout Utility */
   .phone-header {
     width: var(--spacing-phone-width);
-    height: 48px;
+    height: var(--header-height);
     position: sticky;
     top: var(--statusbar-height);
     z-index: 10;
@@ -177,6 +186,10 @@
     width: var(--size-avatar-lg);
     height: var(--size-avatar-lg);
     border-radius: 9999px;
+  }
+  .icon-xxs {
+    width: var(--size-icon-xxs);
+    height: var(--size-icon-xxs);
   }
   .icon-xs {
     width: var(--size-icon-xs);
@@ -234,5 +247,13 @@
     font-size: var(--font-size-body-sm);
     line-height: var(--leading-body-sm);
     letter-spacing: var(--tracking-body-sm);
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }

@@ -1,107 +1,194 @@
 [
   {
     "name": "정시빈",
-    "statusMessage": "오늘도 화이팅!",
-    "profileImage": "",
+    "id": "me",
+    "avatarUrl": "/profiles/ChoiJiyun.png",
     "profileMusic": "NewJeans - ETA",
-    "favorite": true
+    "status": "오늘도 화이팅!",
+    "badgeText": "",
+    "isChannel": false,
+    "favorite": false,
+    "birthdaySoon": false,
+    "updatedProfile": false
   },
   {
     "name": "최지윤",
-    "statusMessage": "집에 가고 싶다",
-    "profileImage": "",
+    "status": "집에 가고싶다",
+    "avatarUrl": "",
     "profileMusic": "",
-    "favorite": false
+    "favorite": false,
+    "id": "f1",
+    "badgeText": "",
+    "isChannel": false,
+    "birthdaySoon": false,
+    "updatedProfile": false
   },
   {
     "name": "승연진",
-    "statusMessage": "Golden - HUNTER",
-    "profileImage": "",
+    "status": "Golden - HUNTER",
+    "avatarUrl": "",
     "profileMusic": "SEVENTEEN - Super",
-    "favorite": true
+    "favorite": true,
+    "id": "f2",
+    "badgeText": "",
+    "isChannel": false,
+    "birthdaySoon": true,
+    "updatedProfile": false
   },
   {
     "name": "나연",
-    "statusMessage": "당분간 혼자만 가능",
-    "profileImage": "",
+    "status": "당분간 혼자만 가능",
+    "avatarUrl": "",
     "profileMusic": "",
-    "favorite": false
+    "favorite": false,
+    "id": "f3",
+    "badgeText": "",
+    "isChannel": false,
+    "birthdaySoon": true,
+    "updatedProfile": true
   },
   {
     "name": "이예진",
-    "statusMessage": "💫",
-    "profileImage": "",
+    "status": "💫",
+    "avatarUrl": "",
     "profileMusic": "",
-    "favorite": true
+    "favorite": true,
+    "id": "f4",
+    "badgeText": "",
+    "isChannel": false,
+    "birthdaySoon": false,
+    "updatedProfile": false
   },
   {
     "name": "홍민서",
-    "statusMessage": "좋은 하루",
-    "profileImage": "",
+    "status": "좋은 하루",
+    "avatarUrl": "",
     "profileMusic": "",
-    "favorite": false
+    "favorite": false,
+    "id": "f5",
+    "badgeText": "",
+    "isChannel": false,
+    "birthdaySoon": false,
+    "updatedProfile": true
   },
   {
     "name": "김채원",
-    "statusMessage": "열공 모드",
-    "profileImage": "",
+    "status": "열공 모드",
+    "avatarUrl": "",
     "profileMusic": "",
-    "favorite": false
+    "favorite": false,
+    "id": "f6",
+    "badgeText": "",
+    "isChannel": false,
+    "birthdaySoon": false,
+    "updatedProfile": false
   },
   {
     "name": "이정원",
-    "statusMessage": "주말만 기다린다",
-    "profileImage": "",
+    "status": "주말만 기다린다",
+    "avatarUrl": "",
     "profileMusic": "",
-    "favorite": false
+    "favorite": false,
+    "id": "f7",
+    "badgeText": "",
+    "isChannel": false,
+    "birthdaySoon": false,
+    "updatedProfile": true
   },
   {
     "name": "이진리",
-    "statusMessage": "커피는 사랑",
-    "profileImage": "",
+    "status": "커피는 사랑",
+    "avatarUrl": "",
     "profileMusic": "",
-    "favorite": true
+    "favorite": true,
+    "id": "f8",
+    "badgeText": "",
+    "isChannel": false,
+    "birthdaySoon": false,
+    "updatedProfile": true
   },
   {
     "name": "김나연",
-    "statusMessage": "꿈을 향해",
-    "profileImage": "",
+    "status": "꿈을 향해",
+    "avatarUrl": "",
     "profileMusic": "",
-    "favorite": false
+    "favorite": false,
+    "id": "f9",
+    "badgeText": "",
+    "isChannel": false,
+    "birthdaySoon": false,
+    "updatedProfile": true
   },
   {
     "name": "엄마",
-    "statusMessage": "밥 먹었니?",
-    "profileImage": "",
+    "status": "밥 먹었니?",
+    "avatarUrl": "",
     "profileMusic": "",
-    "favorite": true
+    "favorite": true,
+    "id": "f10",
+    "badgeText": "",
+    "isChannel": false,
+    "birthdaySoon": false,
+    "updatedProfile": false
   },
   {
     "name": "아빠",
-    "statusMessage": "건강이 최고",
-    "profileImage": "",
+    "status": "건강이 최고",
+    "avatarUrl": "",
     "profileMusic": "",
-    "favorite": false
+    "favorite": false,
+    "id": "f11",
+    "badgeText": "",
+    "isChannel": false,
+    "birthdaySoon": false,
+    "updatedProfile": false
   },
   {
     "name": "박지훈",
-    "statusMessage": "운동 중",
-    "profileImage": "",
+    "status": "운동 중",
+    "avatarUrl": "",
     "profileMusic": "BTS - Dynamite",
-    "favorite": false
+    "favorite": false,
+    "id": "f12",
+    "badgeText": "",
+    "isChannel": false,
+    "birthdaySoon": false,
+    "updatedProfile": true
   },
   {
     "name": "한수민",
-    "statusMessage": "드라마 정주행 중",
-    "profileImage": "",
+    "status": "드라마 정주행 중",
+    "avatarUrl": "",
     "profileMusic": "",
-    "favorite": false
+    "favorite": false,
+    "id": "f13",
+    "badgeText": "",
+    "isChannel": false,
+    "birthdaySoon": false,
+    "updatedProfile": false
   },
   {
     "name": "윤서준",
-    "statusMessage": "게임은 삶",
-    "profileImage": "",
+    "status": "게임은 삶",
+    "avatarUrl": "",
     "profileMusic": "",
-    "favorite": false
+    "favorite": false,
+    "id": "f14",
+    "badgeText": "",
+    "isChannel": false,
+    "birthdaySoon": false,
+    "updatedProfile": false
+  },
+  {
+    "name": "세오스",
+    "status": "세오스가 미래다",
+    "avatarUrl": "",
+    "profileMusic": "",
+    "favorite": false,
+    "id": "f15",
+    "badgeText": "",
+    "isChannel": true,
+    "birthdaySoon": false,
+    "updatedProfile": false
   }
 ]

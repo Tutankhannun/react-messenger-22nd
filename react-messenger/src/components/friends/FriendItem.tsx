@@ -1,42 +1,48 @@
-import React from "react";
-import type { Friend } from "../../types/friend";
+import type { Friend } from "@type/friend";
 
-type Props = {
-  data: Friend;
-};
-
-const Avatar: React.FC<{ src?: string; alt: string }> = ({ src, alt }) => (
-  <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
-    {src ? (
-      <img src={src} alt={alt} className="w-full h-full object-cover" />
-    ) : (
-      <div className="w-full h-full grid place-items-center text-gray-400">
-        👤
-      </div>
-    )}
-  </div>
-);
-
-export const FriendItem: React.FC<Props> = ({ data }) => {
+export default function FriendItem({ friend }: { friend: Friend }) {
+  const initials = friend.name.slice(0, 1);
   return (
-    <div className="w-full flex items-center gap-3 px-4 py-3">
-      <Avatar src={data.profileImage} alt={data.name} />
-      <div className="flex-1 min-w-0">
-        <p className="text-[15px] leading-tight text-gray-900 truncate">
-          {data.name}
-        </p>
-        {data.statusMessage && (
-          <p className="text-[12px] text-gray-500 truncate mt-0.5">
-            {data.statusMessage}
-          </p>
+    <li className="flex items-center justify-between px-4 py-2.5">
+      <div className="flex items-center gap-3">
+        {/* 아바타 */}
+        {friend.avatarUrl ? (
+          <img
+            src={friend.avatarUrl}
+            alt=""
+            className="icon-xl rounded-full object-cover"
+          />
+        ) : (
+          <div className="icon-lg rounded-full bg-black/5 grid place-items-center text-sm text-black/60">
+            {initials}
+          </div>
         )}
-        {data.profileMusic && (
-          <p className="text-[12px] text-green-600 truncate mt-0.5">
-            🎵 {data.profileMusic}
-          </p>
-        )}
+
+        {/* 이름/상태 */}
+        <div className="min-w-0">
+          <div className="flex items-center gap-2">
+            <p className="truncate text-[15px] text-black">{friend.name}</p>
+            {friend.badgeText && (
+              <span className="rounded-full bg-[#FFE9C2] px-2 py-0.5 text-[10px] text-[#9A5E00]">
+                {friend.badgeText}
+              </span>
+            )}
+          </div>
+          {/* 상태 메시지 */}
+          {friend.status && (
+            <p className="truncate text-[12px] text-black/50">
+              {friend.status}
+            </p>
+          )}
+
+          {/* 프로필 음악 */}
+          {friend.profileMusic && (
+            <div className="truncate text-[11px] text-[#3678F5]">
+              {friend.profileMusic}
+            </div>
+          )}
+        </div>
       </div>
-      {data.favorite && <span className="text-yellow-400">★</span>}
-    </div>
+    </li>
   );
-};
+}

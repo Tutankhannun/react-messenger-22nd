@@ -15,15 +15,4 @@ export default defineConfig({
       },
     }),
   ],
-  // resolve: {
-  //   alias: {
-  //     "@": path.resolve("react-messenger", "./src"),
-  //     "@assets": path.resolve("react-messenger", "./src/assets"),
-  //     "@components": path.resolve("react-messenger", "./src/components"),
-  //     "@pages": path.resolve("react-messenger", "./src/pages"),
-  //     "@styles": path.resolve("react-messenger", "./src/styles"),
-  //     "@type": path.resolve("react-messenger", "./src/types"),
-  //     "@views": path.resolve("react-messenger", "./src/views"),
-  //   },
-  // },
 });

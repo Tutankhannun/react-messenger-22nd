@@ -24,7 +24,7 @@ const ChatsList = () => {
       return {
         id: chatId,
         name: otherUser.name,
-        avatarUrl: otherUser.profileImage,
+        avatarUrl: otherUser.avatarUrl,
         lastMessage: lastMessage.text,
       };
     });
