@@ -36,13 +36,13 @@ const ChatsList = () => {
       right: (
         <>
           <button>
-            <SearchIcon className="flex items-center justify-center w-[32px] h-[32px]" />
+            <SearchIcon className="icon-md flex items-center justify-center " />
           </button>
           <button>
-            <AddChatIcon className="flex items-center justify-center w-[32px] h-[32px]" />
+            <AddChatIcon className="icon-md flex items-center justify-center " />
           </button>
           <button>
-            <SortIcon className="flex items-center justify-center w-[32px] h-[32px]" />
+            <SortIcon className="icon-md flex items-center justify-center " />
           </button>
         </>
       ),

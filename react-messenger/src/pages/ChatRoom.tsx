@@ -160,7 +160,7 @@ const ChatRoom = () => {
 
   return (
     <Container>
-      <StatusBar className="absolute inset-x-0 top-0 w-full h-[var(--statusbar-height)] z-50 bg-fill-chatroom pointer-events-none" />
+      <StatusBar className="absolute inset-x-0 top-0 w-full h-[var(--statusbar-height)] z-50 bg-transparent pointer-events-none" />
       <Header
         title={roomName}
         left={
@@ -178,11 +178,11 @@ const ChatRoom = () => {
             </button>
           </>
         }
-        className="bg-fiil-chartroom"
+        className="bg-transparent"
       />
       <Content>
         {/* Content 내부에 채팅방 UI 전체를 구성합니다. */}
-        <div className="relative w-full h-full bg-fill-chatroom">
+        <div className="relative w-full h-full bg-transparent">
           {/* 메시지 스크롤 영역 */}
           <div
             ref={scrollerRef}

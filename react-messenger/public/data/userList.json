@@ -180,12 +180,24 @@
     "updatedProfile": false
   },
   {
+    "name": "왕건호",
+    "status": "농구가 최고",
+    "avatarUrl": "",
+    "profileMusic": "",
+    "favorite": false,
+    "id": "f15",
+    "badgeText": "",
+    "isChannel": false,
+    "birthdaySoon": false,
+    "updatedProfile": false
+  },
+  {
     "name": "세오스",
     "status": "세오스가 미래다",
     "avatarUrl": "",
     "profileMusic": "",
     "favorite": false,
-    "id": "f15",
+    "id": "f16",
     "badgeText": "",
     "isChannel": true,
     "birthdaySoon": false,

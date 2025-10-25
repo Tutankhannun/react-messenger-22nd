@@ -4,7 +4,7 @@ type Props = { children: ReactNode };
 
 const Content = ({ children }: Props) => {
   return (
-    <main className=" pt-[var(--header-height)] h-[var(--chatRoomContent-height)] overflow-hidden ">
+    <main className=" pt-[var(--header-height)] h-[var(--content-height)] bg-transparent overflow-hidden ">
       {children}
     </main>
   );

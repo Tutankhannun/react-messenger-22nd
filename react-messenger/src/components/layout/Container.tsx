@@ -4,6 +4,7 @@ type Props = { children: ReactNode };
 
 const Container = ({ children }: Props) => {
   const isChatRoom = location.pathname.startsWith("/chats/");
+  const isProfileRoom = location.pathname.startsWith("/profile/");
 
   return (
     // 전체 화면을 채우는 배경
@@ -11,8 +12,12 @@ const Container = ({ children }: Props) => {
       {/* 스마트폰 모양의 프레임 */}
       <div
         className={`relative phone-frame ${
-          isChatRoom ? "bg-fill-chatroom" : "bg-fill-normal"
-        } shadow-xl overflow-hidden`}
+          isProfileRoom
+            ? "bg-black"
+            : isChatRoom
+            ? "bg-fill-chatroom"
+            : "bg-fill-normal"
+        }  shadow-xl overflow-hidden`}
       >
         {children}
       </div>

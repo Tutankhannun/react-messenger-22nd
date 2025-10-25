@@ -13,9 +13,7 @@ const Header: React.FC<Props> = ({ title, left, right }) => {
   const isChatRoom = location.pathname.startsWith("/chats/");
 
   return (
-    <header
-      className={`phone-header ${isChatRoom ? "bg-fill-chatroom" : "bg-white"}`}
-    >
+    <header className={`phone-header bg-transparent`}>
       {/* 왼쪽 & 타이틀 영역 */}
       <div className="flex items-center">
         {left}

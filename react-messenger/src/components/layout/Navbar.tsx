@@ -63,7 +63,7 @@ const items: NavItem[] = [
 
 const Navbar = () => {
   return (
-    <nav className="absolute bottom-0 h-[var(--navbar-height)] w-full bg-white border-t border-neutral-200 flex items-center">
+    <nav className="absolute bottom-0 h-[var(--navbar-height)] w-full bg-white border-t border-grey-08 flex items-center">
       <div className="w-full flex justify-around -translate-y-2.5">
         {items.map((it) => {
           return (
@@ -76,7 +76,7 @@ const Navbar = () => {
                 const ActiveIcon = isActive ? it.pressedIcon : it.defaultIcon;
                 return (
                   <>
-                    <ActiveIcon className="w-[48px] h-[44px]" />
+                    <ActiveIcon className="icon-nav" />
                   </>
                 );
               }}

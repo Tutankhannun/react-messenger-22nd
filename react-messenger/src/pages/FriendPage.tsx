@@ -4,6 +4,7 @@ import FriendItem from "@components/friends/FriendItem";
 import { useHeader } from "@views/Layout";
 import Section from "@components/friends/Section";
 import AvatarStack from "@components/common/AvatarStack";
+import { useNavigate } from "react-router-dom";
 
 import SearchIcon from "@assets/icons/Buttons/header/search.svg?react";
 import AddFriendIcon from "@assets/icons/Buttons/header/addFriend.svg?react";
@@ -11,6 +12,7 @@ import SettingsIcon from "@assets/icons/Buttons/header/setting.svg?react";
 
 const FriendsPage: React.FC = () => {
   const [friends, setFriends] = useState<Friend[]>([]);
+  const navigate = useNavigate();
 
   const setHeader = useHeader();
   useEffect(() => {
@@ -19,13 +21,13 @@ const FriendsPage: React.FC = () => {
       right: (
         <>
           <button aria-label="검색">
-            <SearchIcon className="flex items-center justify-center w-[32px] h-[32px]" />
+            <SearchIcon className="icon-md flex items-center justify-center " />
           </button>
           <button aria-label="친구추가">
-            <AddFriendIcon className="flex items-center justify-center w-[32px] h-[32px]" />
+            <AddFriendIcon className="icon-md flex items-center justify-center" />
           </button>
           <button aria-label="설정">
-            <SettingsIcon className="flex items-center justify-center w-[32px] h-[32px]" />
+            <SettingsIcon className="icon-md flex items-center justify-center " />
           </button>
         </>
       ),
@@ -52,96 +54,97 @@ const FriendsPage: React.FC = () => {
   const birthdayThumbs = birthday.map((f) => f.avatarUrl).slice(0, 4);
   const favoritesThumbs = favorites.map((f) => f.avatarUrl).slice(0, 4);
 
+  const goProfile = (f: Friend) =>
+    navigate(`/profile/${encodeURIComponent(f.id)}`);
+
   return (
-    <div className="mx-auto h-[var(--content-height)] overflow-hidden bg-white flex flex-col scrollbar-hide">
+    <div className="mx-auto h-full  flex flex-col scrollbar-hide">
       {/* 스크롤 가능한 리스트 본문 */}
-      <div className="flex-1 overflow-y-auto">
-        <div className="w-full mx-auto">
-          {/* 내 프로필 */}
-          {me && (
-            <div className="border-b border-black/5 py-2">
-              <FriendItem friend={me} />
-            </div>
-          )}
+      <div className="flex flex-col gap-y-6  overflow-y-auto scrollbar-hide">
+        {/* 내 프로필 */}
+        {me && (
+          <div className="border-b border-black/5 py-2">
+            <FriendItem friend={me} onClick={goProfile} />
+          </div>
+        )}
 
-          {/* 업데이트한 친구 */}
-          {
-            <Section
-              title="업데이트한 프로필"
-              count={updated.length}
-              showCountOnTitle
-              trailing={<AvatarStack urls={updatedThumbs} />}
-            >
-              {updated.length > 0 ? (
-                <ul>
-                  {updated.map((f) => (
-                    <FriendItem key={f.id} friend={f} />
-                  ))}
-                </ul>
-              ) : (
-                <div className="px-4 pb-3 text-[13px] text-black/40">
-                  최근에 프로필을 업데이트한 친구가 없어요
-                </div>
-              )}
-            </Section>
-          }
-
-          {/* 생일인 친구 */}
+        {/* 업데이트한 친구 */}
+        {
           <Section
-            title="생일인 친구"
-            count={birthday.length}
+            title="업데이트한 프로필"
+            count={updated.length}
             showCountOnTitle
-            trailing={<AvatarStack urls={birthdayThumbs} />}
+            trailing={<AvatarStack urls={updatedThumbs} />}
           >
-            {birthday.length > 0 ? (
+            {updated.length > 0 ? (
               <ul>
-                {birthday.map((f) => (
-                  <FriendItem key={f.id} friend={f} />
+                {updated.map((f) => (
+                  <FriendItem key={f.id} friend={f} onClick={goProfile} />
                 ))}
               </ul>
             ) : (
               <div className="px-4 pb-3 text-[13px] text-black/40">
-                오늘은 생일인 친구가 없어요
+                최근에 프로필을 업데이트한 친구가 없어요
               </div>
             )}
           </Section>
+        }
 
-          {/* 즐겨찾기 */}
-          {favorites.length > 0 && (
-            <Section
-              title="즐겨찾기"
-              count={favorites.length}
-              showCountOnTitle
-              trailing={<AvatarStack urls={favoritesThumbs} />}
-            >
-              <ul>
-                {favorites.map((f) => (
-                  <FriendItem key={f.id} friend={f} />
-                ))}
-              </ul>
-            </Section>
-          )}
-
-          {/* 전체 친구 */}
-          <Section title="친구" count={normalFriends.length}>
+        {/* 생일인 친구 */}
+        <Section
+          title="생일인 친구"
+          count={birthday.length}
+          showCountOnTitle
+          trailing={<AvatarStack urls={birthdayThumbs} />}
+        >
+          {birthday.length > 0 ? (
             <ul>
-              {normalFriends.map((f) => (
-                <FriendItem key={f.id} friend={f} />
+              {birthday.map((f) => (
+                <FriendItem key={f.id} friend={f} onClick={goProfile} />
+              ))}
+            </ul>
+          ) : (
+            <div className="px-4 pb-3 text-[13px] text-black/40">
+              오늘은 생일인 친구가 없어요
+            </div>
+          )}
+        </Section>
+
+        {/* 즐겨찾기 */}
+        {favorites.length > 0 && (
+          <Section
+            title="즐겨찾기"
+            count={favorites.length}
+            showCountOnTitle
+            trailing={<AvatarStack urls={favoritesThumbs} />}
+          >
+            <ul>
+              {favorites.map((f) => (
+                <FriendItem key={f.id} friend={f} onClick={goProfile} />
               ))}
             </ul>
           </Section>
+        )}
 
-          {/* 채널 */}
-          {channels.length > 0 && (
-            <Section title="채널" count={channels.length}>
-              <ul>
-                {channels.map((f) => (
-                  <FriendItem key={f.id} friend={f} />
-                ))}
-              </ul>
-            </Section>
-          )}
-        </div>
+        {/* 전체 친구 */}
+        <Section title="친구" count={normalFriends.length}>
+          <ul>
+            {normalFriends.map((f) => (
+              <FriendItem key={f.id} friend={f} onClick={goProfile} />
+            ))}
+          </ul>
+        </Section>
+
+        {/* 채널 */}
+        {channels.length > 0 && (
+          <Section title="채널" count={channels.length}>
+            <ul>
+              {channels.map((f) => (
+                <FriendItem key={f.id} friend={f} onClick={goProfile} />
+              ))}
+            </ul>
+          </Section>
+        )}
       </div>
     </div>
   );

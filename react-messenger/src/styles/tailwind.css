@@ -13,9 +13,9 @@
   --navbar-height: 84px;
   --chatRoomBottom-height: 80px;
   --chatSendbar-height: 44px;
+  --covover-image-height: 550px;
   --content-height: calc(
-    var(--spacing-phone-height) - var(--statusbar-height) - var(--navbar-height) -
-      var(--header-height)
+    var(--spacing-phone-height) - var(--statusbar-height) - var(--navbar-height)
   );
   --chatRoomContent-height: calc(
     var(--spacing-phone-height) - var(--statusbar-height) - var(--navbar-height)
@@ -32,6 +32,7 @@
   --size-icon-md: 32px; /* general big icon */
   --size-icon-lg: 44px;
   --size-icon-xl: 48px;
+  --size-icon-xxl: 64px;
 
   /* ===== Colors ===== */
   /* Main / B&W */
@@ -206,6 +207,10 @@
   .icon-lg {
     width: var(--size-icon-lg);
     height: var(--size-icon-lg);
+  }
+  .icno-xxl {
+    width: var(--size-icon-xxl);
+    height: var(--size-icon-xxl);
   }
   .icon-nav {
     width: var(--size-icon-xl);
