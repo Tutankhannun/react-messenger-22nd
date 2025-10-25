@@ -1,4 +1,5 @@
 import type { Friend } from "@type/friend";
+import ProfileIcon from "@assets/icons/defaultProfile.svg?react";
 
 type Props = {
   friend: Friend;
@@ -6,8 +7,6 @@ type Props = {
 };
 
 export default function FriendItem({ friend, onClick }: Props) {
-  const initials = friend.name.slice(0, 1);
-
   return (
     <li className="flex items-center justify-between">
       <button
@@ -18,17 +17,17 @@ export default function FriendItem({ friend, onClick }: Props) {
       >
         <div className="flex items-center gap-3">
           {/* 아바타 */}
-          {friend.avatarUrl ? (
-            <img
-              src={friend.avatarUrl}
-              alt=""
-              className="icon-xl rounded-full object-cover"
-            />
-          ) : (
-            <div className="icon-lg rounded-full bg-black/5 grid place-items-center text-sm text-black/60">
-              {initials}
-            </div>
-          )}
+          <div className="size-12 shrink-0 rounded-full bg-pink-100 overflow-hidden inline-block align-middle">
+            {friend.avatarUrl ? (
+              <img
+                src={friend.avatarUrl}
+                alt=""
+                className="icon-xl rounded-full object-cover"
+              />
+            ) : (
+              <ProfileIcon className="w-full h-full" />
+            )}
+          </div>
 
           {/* 이름/상태 */}
           <div className="min-w-0">

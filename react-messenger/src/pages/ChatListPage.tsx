@@ -60,7 +60,7 @@ const ChatsList = () => {
                 className="flex items-center gap-3 py-3 active:opacity-80"
               >
                 {/* avatarUrl 유무에 따라 조건부로 렌더링 */}
-                <div className="w-[56px] h-[56px]">
+                <div className="avatar-lg">
                   {c.avatarUrl ? (
                     <img
                       src={c.avatarUrl}

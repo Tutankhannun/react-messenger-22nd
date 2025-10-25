@@ -10,6 +10,7 @@ import CloseIcon from "@assets/icons/Buttons/header/cancel.svg?react";
 import GiftIcon from "@assets/icons/Buttons/header/gift.svg?react";
 import QrCodeIcon from "@assets/icons/Buttons/header/QR.svg?react";
 import SettingIcon from "@assets/icons/Buttons/header/profileSetting.svg?react";
+import ProfileIcon from "@assets/icons/defaultProfile.svg?react";
 
 const ProfilePage: React.FC = () => {
   const { id: rawId } = useParams();
@@ -73,7 +74,7 @@ const ProfilePage: React.FC = () => {
                 className="h-full w-full object-cover"
               />
             ) : (
-              <span className="text-3xl">{friend.name.slice(0, 1)}</span>
+              <ProfileIcon className="w-full h-full" />
             )}
           </div>
           <div className="mt-3 text-headline text-white">{friend.name}</div>

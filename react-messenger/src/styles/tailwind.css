@@ -22,9 +22,11 @@
   );
 
   /* ===== Common sizes ===== */
+  --size-avatat-xs: 24px;
   --size-avatar-sm: 32px;
   --size-avatar-md: 48px;
   --size-avatar-lg: 56px;
+  --size-avatar-stack: 34px;
 
   --size-icon-xxs: 18px;
   --size-icon-xs: 26px;
@@ -188,6 +190,11 @@
     height: var(--size-avatar-lg);
     border-radius: 9999px;
   }
+  .avatar-stack {
+    width: var(--size-avatar-stack);
+    height: var(--size-avatar-stack);
+    border-radius: 9999px;
+  }
   .icon-xxs {
     width: var(--size-icon-xxs);
     height: var(--size-icon-xxs);
@@ -252,6 +259,11 @@
     font-size: var(--font-size-body-sm);
     line-height: var(--leading-body-sm);
     letter-spacing: var(--tracking-body-sm);
+  }
+
+  .section {
+    width: 343px;
+    height: 58px;
   }
 
   .scrollbar-hidden::-webkit-scrollbar {

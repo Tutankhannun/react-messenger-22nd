@@ -1,17 +1,5 @@
 [
   {
-    "name": "정시빈",
-    "id": "me",
-    "avatarUrl": "/profiles/ChoiJiyun.png",
-    "profileMusic": "NewJeans - ETA",
-    "status": "오늘도 화이팅!",
-    "badgeText": "",
-    "isChannel": false,
-    "favorite": false,
-    "birthdaySoon": false,
-    "updatedProfile": false
-  },
-  {
     "name": "최지윤",
     "status": "집에 가고싶다",
     "avatarUrl": "",
@@ -49,7 +37,7 @@
   },
   {
     "name": "이예진",
-    "status": "💫",
+    "status": "산할아버지 뉴에라 모자",
     "avatarUrl": "",
     "profileMusic": "",
     "favorite": true,
@@ -200,6 +188,18 @@
     "id": "f16",
     "badgeText": "",
     "isChannel": true,
+    "birthdaySoon": false,
+    "updatedProfile": false
+  },
+  {
+    "name": "정시빈",
+    "id": "me",
+    "avatarUrl": "/profiles/ChoiJiyun.png",
+    "profileMusic": "",
+    "status": "오늘도 화이팅!",
+    "badgeText": "",
+    "isChannel": false,
+    "favorite": false,
     "birthdaySoon": false,
     "updatedProfile": false
   }

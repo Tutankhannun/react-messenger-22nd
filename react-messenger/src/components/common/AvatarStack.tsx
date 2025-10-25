@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import ProfileIcon from "@assets/icons/defaultProfile.svg?react";
 
 type Props = {
   urls: (string | undefined)[];
@@ -10,8 +11,8 @@ type Props = {
 export default function AvatarStack({
   urls,
   max = 4,
-  size = 24,
-  overlap = 8,
+  size = 34,
+  overlap = 12,
 }: Props) {
   const list = urls.slice(0, max);
   return (
@@ -32,7 +33,7 @@ export default function AvatarStack({
             style={style}
           />
         ) : (
-          <div key={i} className="rounded-full bg-black/10" style={style} />
+          <ProfileIcon key={i} className="avatar-stack" style={style} />
         );
       })}
     </div>

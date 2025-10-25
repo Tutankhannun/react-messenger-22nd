@@ -60,7 +60,7 @@ const FriendsPage: React.FC = () => {
   return (
     <div className="mx-auto h-full  flex flex-col scrollbar-hide">
       {/* 스크롤 가능한 리스트 본문 */}
-      <div className="flex flex-col gap-y-6  overflow-y-auto scrollbar-hide">
+      <div className="flex flex-col overflow-y-auto scrollbar-hide">
         {/* 내 프로필 */}
         {me && (
           <div className="border-b border-black/5 py-2">
@@ -127,7 +127,7 @@ const FriendsPage: React.FC = () => {
         )}
 
         {/* 전체 친구 */}
-        <Section title="친구" count={normalFriends.length}>
+        <Section title="친구" showCountOnTitle count={normalFriends.length}>
           <ul>
             {normalFriends.map((f) => (
               <FriendItem key={f.id} friend={f} onClick={goProfile} />
@@ -137,7 +137,7 @@ const FriendsPage: React.FC = () => {
 
         {/* 채널 */}
         {channels.length > 0 && (
-          <Section title="채널" count={channels.length}>
+          <Section title="채널" showCountOnTitle count={channels.length}>
             <ul>
               {channels.map((f) => (
                 <FriendItem key={f.id} friend={f} onClick={goProfile} />
