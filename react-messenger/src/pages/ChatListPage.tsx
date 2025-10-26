@@ -1,6 +1,11 @@
 import { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { formatChatTime } from "@/utils/formatChatTime";
+import { useMinuteTick } from "@/hooks/useMinuteTick";
+import { computeUnread } from "@/utils/computeUnread";
+import { type RawMessage } from "@/types/chat";
 import { useHeader } from "@views/Layout";
+import { useMessages } from "@/stores/messages";
 import usersData from "@assets/data/userList.json";
 import messagesData from "@assets/data/message.json";
 
@@ -9,27 +14,43 @@ import AddChatIcon from "@assets/icons/Buttons/header/addChat.svg?react";
 import SortIcon from "@assets/icons/Buttons/header/sort.svg?react";
 import ProfileIcon from "@assets/icons/defaultProfile.svg?react";
 
-const ChatsList = () => {
-  const setHeader = useHeader();
+type ChatPreview = {
+  id: string;
+  name: string;
+  avatarUrl?: string;
+  lastMessage: string;
+  lastMessageAt?: string | number | Date; // ← 시간 포함
+  unread: number;
+};
+export default function ChatsList() {
+  const { messages } = useMessages();
+  useMinuteTick(); // 1분마다 재렌더 트리거
 
-  const chatPreviews = useMemo(() => {
-    // message.json의 키(c1, c2 등)를 기반으로 목록
-    return Object.keys(messagesData).map((chatId, index) => {
-      const messages = messagesData[chatId as keyof typeof messagesData];
-      const lastMessage = messages[messages.length - 1]; // 가장 마지막 메시지
-
-      // userList.json에서 순서대로 사용자를 매칭 (임시 방식)
-      const otherUser = usersData[index];
-
+  const chatPreviews = useMemo<ChatPreview[]>(() => {
+    const chatIds = Object.keys(messages);
+    return chatIds.map((chatId, idx) => {
+      const msgs = (messages as Record<string, RawMessage[]>)[chatId] ?? [];
+      const last = msgs[msgs.length - 1];
       return {
         id: chatId,
-        name: otherUser.name,
-        avatarUrl: otherUser.avatarUrl,
-        lastMessage: lastMessage.text,
+        name: (usersData[idx]?.name as string) ?? "이름 없음",
+        avatarUrl: usersData[idx]?.avatarUrl as string | undefined,
+        lastMessage: last?.text ?? "",
+        lastMessageAt: last?.createdAt,
+        unread: computeUnread(msgs) ?? 0,
       };
     });
-  }, []);
+  }, [messages]);
 
+  const setHeader = useHeader();
+
+  if (!chatPreviews.length) {
+    return (
+      <div className="text-center text-sm text-black/40 py-10">
+        채팅이 없습니다.
+      </div>
+    );
+  }
   useEffect(() => {
     setHeader({
       title: "채팅",
@@ -52,31 +73,48 @@ const ChatsList = () => {
   return (
     <div className="w-full h-full flex flex-col items-center">
       <div className="w-[343px]">
-        <ul>
+        <ul className="divide-y divide-black/5">
           {chatPreviews.map((c) => (
             <li key={c.id}>
               <Link
                 to={`/chats/${c.id}`}
                 className="flex items-center gap-3 py-3 active:opacity-80"
               >
-                {/* avatarUrl 유무에 따라 조건부로 렌더링 */}
-                <div className="avatar-lg">
+                {/* 아바타 */}
+                <div className="size-12 shrink-0 rounded-full overflow-hidden ">
                   {c.avatarUrl ? (
                     <img
                       src={c.avatarUrl}
-                      alt="avatar"
-                      className="w-full h-full rounded-full object-cover"
+                      alt=""
+                      className="w-full h-full object-cover"
                     />
                   ) : (
-                    <ProfileIcon className="w-full h-full rounded-full" />
+                    <ProfileIcon className="w-full h-full" />
                   )}
                 </div>
 
+                {/* 본문 */}
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold truncate">{c.name}</h3>
-                  <p className="text-sm text-gray-500 truncate">
-                    {c.lastMessage}
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-title-md font-medium text-black/90 truncate">
+                      {c.name}
+                    </p>
+                    <span className="ml-auto text-body-sm text-black/40">
+                      {c.lastMessageAt ? formatChatTime(c.lastMessageAt) : ""}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <p className=" text-sm text-black/50">{c.lastMessage}</p>
+                    {/* 미읽음 뱃지 */}
+                    {c.unread > 0 && (
+                      <span
+                        className="ml-auto inline-flex min-w-5 h-5 px-1.5 items-center justify-center
+                                   rounded-full bg-[#FF4242] text-white text-[11px]"
+                      >
+                        {c.unread > 99 ? "99+" : c.unread}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </Link>
             </li>
@@ -85,6 +123,4 @@ const ChatsList = () => {
       </div>
     </div>
   );
-};
-
-export default ChatsList;
+}

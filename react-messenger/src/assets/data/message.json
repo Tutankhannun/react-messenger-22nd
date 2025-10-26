@@ -36,6 +36,20 @@
       "sender": "me",
       "text": "오케이 확인!",
       "createdAt": "2025-09-28T11:01:00Z"
+    },
+    {
+      "id": "c2-m3",
+      "chatId": "c2",
+      "sender": "other",
+      "text": "그럼 내일보자",
+      "createdAt": "2025-09-28T11:00:00Z"
+    },
+    {
+      "id": "c2-m4",
+      "chatId": "c2",
+      "sender": "other",
+      "text": "잠 좀 푹 자둬",
+      "createdAt": "2025-09-28T11:00:00Z"
     }
   ],
   "c3": [

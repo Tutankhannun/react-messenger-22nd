@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import type { Message } from "@type/chat";
+import type { RawMessage } from "@type/chat";
 import usersData from "@assets/data/userList.json";
 import messagesData from "@assets/data/message.json";
 import Container from "@components/layout/Container";
@@ -75,13 +75,13 @@ const Bubble = ({
 // 방별 로컬스토리지 키
 const keyOf = (chatId: string) => `chat:${chatId}`;
 type MessagesData = {
-  [key: string]: Message[];
+  [key: string]: RawMessage[];
 };
 
 const ChatRoom = () => {
   const { id: chatId = "" } = useParams();
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<RawMessage[]>([]);
   const scrollerRef = useRef<HTMLDivElement>(null);
 
   // 방 이름 매핑
@@ -139,7 +139,7 @@ const ChatRoom = () => {
   const send = () => {
     const text = input.trim();
     if (!text) return;
-    const m: Message = {
+    const m: RawMessage = {
       id: crypto.randomUUID(),
       chatId: chatId,
       sender: "me", // 나만 보냄
