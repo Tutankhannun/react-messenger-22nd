@@ -1,6 +1,5 @@
 import React from "react";
 import ChatIcon from "@assets/icons/Buttons/profile/memo.svg?react";
-import CallIcon from "@assets/icons/Buttons/profile/call.svg?react";
 import MultiProfileIcon from "@assets/icons/Buttons/profile/multi_person.svg?react";
 import ProfileEditIcon from "@assets/icons/Buttons/profile/profileEdit.svg?react";
 

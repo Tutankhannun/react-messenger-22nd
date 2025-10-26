@@ -7,7 +7,6 @@ import { type RawMessage } from "@/types/chat";
 import { useHeader } from "@views/Layout";
 import { useMessages } from "@/stores/messages";
 import usersData from "@assets/data/userList.json";
-import messagesData from "@assets/data/message.json";
 
 import SearchIcon from "@assets/icons/Buttons/header/search.svg?react";
 import AddChatIcon from "@assets/icons/Buttons/header/addChat.svg?react";
