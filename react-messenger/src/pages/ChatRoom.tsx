@@ -7,15 +7,35 @@ import Container from "@components/layout/Container";
 import Content from "@components/layout/Content";
 import Header from "@components/layout/Header";
 import StatusBar from "@assets/statusBar/StatusBar.svg?react";
-
 import SearchIcon from "@assets/icons/Buttons/header/search.svg?react";
 import MenuIcon from "@assets/icons/Buttons/header/menu.svg?react";
 import AddIcon from "@assets/icons/ChatInput/add.svg?react";
+import StickerIcon from "@assets/icons/ChatInput/sticker.svg?react";
 import SendActiveIcon from "@assets/icons/ChatInput/sendActive.svg?react";
 import SendDefaultIcon from "@assets/icons/ChatInput/sendDefault.svg?react";
 import BackwardIcon from "@assets/icons/Buttons/header/backward.svg?react";
 import ProfileIcon from "@assets/icons/defaultProfile.svg?react";
 
+function dateKey(t: number | string | Date): string {
+  const ms = typeof t === "number" ? t : new Date(t).getTime();
+  const d = new Date(ms);
+  const y = d.getFullYear();
+  const m = `${d.getMonth() + 1}`.padStart(2, "0");
+  const day = `${d.getDate()}`.padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+function formatKDate(key: string): string {
+  // 한국어 날짜 포맷: 2025년 10월 30일
+  const [y, m, d] = key.split("-").map((v) => parseInt(v, 10));
+  return `${y}년 ${m}월 ${d}일`;
+}
+const DateDivider: React.FC<{ label: string }> = ({ label }) => (
+  <div className="my-3 flex items-center justify-center">
+    <span className="inline-flex items-center justify-center w-[158px] h-[22px] rounded-full text-[11px] text-black/50 bg-black/5">
+      {label}
+    </span>
+  </div>
+);
 const Bubble = ({
   me,
   text,
@@ -32,7 +52,6 @@ const Bubble = ({
   const t = new Date(time);
   const hh = String(t.getHours()).padStart(2, "0");
   const mm = String(t.getMinutes()).padStart(2, "0");
-
   if (me) {
     return (
       <div className="w-full flex items-end gap-2 flex-row-reverse flex-1">
@@ -43,7 +62,7 @@ const Bubble = ({
       </div>
     );
   }
-  // 상대방이 보낸 메시지일 경우
+  // 상대가 보낸 메시지
   return (
     <div className="w-full flex items-start gap-3">
       {/* 프로필 이미지 */}
@@ -58,7 +77,7 @@ const Bubble = ({
           <ProfileIcon className="w-full h-full" />
         )}
       </div>
-      {/* 이름과 말풍선 */}
+      {/* 이름 + 말풍선 */}
       <div className="flex flex-col items-start flex-1">
         <p className="text-gray-600 text-title-sm mb-1">{name}</p>
         <div className="flex items-end gap-2 w-full">
@@ -71,34 +90,27 @@ const Bubble = ({
     </div>
   );
 };
-
 // 방별 로컬스토리지 키
 const keyOf = (chatId: string) => `chat:${chatId}`;
 type MessagesData = {
   [key: string]: RawMessage[];
 };
-
 const ChatRoom = () => {
   const { id: chatId = "" } = useParams();
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<RawMessage[]>([]);
   const scrollerRef = useRef<HTMLDivElement>(null);
-
-  // 방 이름 매핑
+  // 방 제목
   const roomName = useMemo(() => {
-    // messagesData나 usersData가 로드되지 않았으면 계산을 시도하지 않음
-    if (!messagesData || !usersData) return "대화";
-    // message.json의 키 순서와 userList.json의 사용자 순서가 일치한다고 가정
+    if (!messagesData || !usersData) return "채팅";
     const chatIds = Object.keys(messagesData);
     const userIndex = chatIds.findIndex((id) => id === chatId);
-
     if (userIndex !== -1 && usersData[userIndex]) {
       return usersData[userIndex].name;
     }
-    return "대화 상대 없음"; // 사용자를 못 찾을 경우의 기본값
+    return "알 수 없음";
   }, [chatId]);
-
-  // 상대방 정보
+  // 상대 정보
   const otherUser = useMemo(() => {
     if (!messagesData || !usersData) return null;
     const chatIds = Object.keys(messagesData);
@@ -108,8 +120,7 @@ const ChatRoom = () => {
     }
     return null;
   }, [chatId]);
-
-  // 최초 로드: 로컬스토리지에서 이전 메시지 불러오기
+  // 최초 로드: 로컬스토리지 → 없으면 데이터에서 로드
   useEffect(() => {
     if (!chatId) return;
     const raw = localStorage.getItem(keyOf(chatId));
@@ -122,12 +133,10 @@ const ChatRoom = () => {
       }
     }
   }, [chatId]);
-  // 메시지 변경 시 로컬스토리지에 저장 + 스크롤 맨 아래로
+  // 메시지 변경 시 저장 + 스크롤 하단 정렬
   useEffect(() => {
     if (!chatId || messages.length === 0) return;
-    // 메시지 저장
     localStorage.setItem(keyOf(chatId), JSON.stringify(messages));
-    // 스크롤 맨 아래로 + 안정화
     const el = scrollerRef.current;
     if (!el) return;
     const scrollToBottom = () => el.scrollTo({ top: el.scrollHeight });
@@ -135,21 +144,19 @@ const ChatRoom = () => {
     const t = window.setTimeout(scrollToBottom, 80);
     return () => window.clearTimeout(t);
   }, [chatId, messages]);
-
   const send = () => {
     const text = input.trim();
     if (!text) return;
     const m: RawMessage = {
       id: crypto.randomUUID(),
       chatId: chatId,
-      sender: "me", // 나만 보냄
+      sender: "me",
       text,
       createdAt: new Date().toISOString(),
     };
     setMessages((prev) => [...prev, m]);
     setInput("");
   };
-
   const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.nativeEvent.isComposing) return;
     if (e.key === "Enter" && !e.shiftKey) {
@@ -157,7 +164,6 @@ const ChatRoom = () => {
       send();
     }
   };
-
   return (
     <Container>
       <StatusBar className="absolute inset-x-0 top-0 w-full h-[var(--statusbar-height)] z-50 bg-transparent pointer-events-none" />
@@ -181,33 +187,53 @@ const ChatRoom = () => {
         className="bg-transparent"
       />
       <Content>
-        {/* Content 내부에 채팅방 UI 전체를 구성합니다. */}
+        {/* Content 영역 */}
         <div className="relative w-full h-full bg-transparent">
           {/* 메시지 스크롤 영역 */}
           <div
             ref={scrollerRef}
             className="absolute top-[1px] bottom-[1px] left-0 right-0 overflow-y-auto p-4 space-y-2 scrollbar-hide"
           >
-            {messages.map((m) => (
-              <Bubble
-                key={m.id}
-                me={m.sender === "me"}
-                text={m.text}
-                time={m.createdAt}
-                name={otherUser?.name || "상대방"}
-                avatarUrl={otherUser?.avatarUrl}
-              />
-            ))}
+            {
+              // 날짜 디바이더 포함 렌더링
+              (() => {
+                const nodes: React.ReactNode[] = [];
+                let prevKey: string | null = null;
+                messages.forEach((m, idx) => {
+                  const curKey = dateKey(m.createdAt);
+                  if (idx === 0 || curKey !== prevKey) {
+                    nodes.push(
+                      <DateDivider
+                        key={`date-${curKey}-${idx}`}
+                        label={formatKDate(curKey)}
+                      />
+                    );
+                    prevKey = curKey;
+                  }
+                  nodes.push(
+                    <Bubble
+                      key={m.id}
+                      me={m.sender === "me"}
+                      text={m.text}
+                      time={m.createdAt}
+                      name={otherUser?.name || "상대"}
+                      avatarUrl={otherUser?.avatarUrl}
+                    />
+                  );
+                });
+                return nodes;
+              })()
+            }
           </div>
         </div>
       </Content>
       {/* 입력 바 */}
-      <div className="absolute bottom-0 left-0 right-0 h-[var(--chatRoomBottom-height)] flex items-center gap-2 p-4 bg-white z-10">
-        <div className="relative flex-1 flex items-center h-[var(--chatSendbar-height)] border-grey-09 border rounded-full -translate-y-1.5">
+      <div className="absolute bottom-0 left-0 right-0 h-[var(--chatRoomBottom-height)] flex items-center gap-[4px] p-4 bg-white z-10">
+        <div className="relative justify-between flex-1 flex items-center h-[var(--chatSendbar-height)] border-grey-09 border rounded-full -translate-y-1.5">
           <button
             aria-label="첨부"
             type="button"
-            className="absolute left-1 top-1/2 -translate-y-1/2 z-10 "
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 "
           >
             <AddIcon className="icon-sm items-center justify-center " />
           </button>
@@ -215,9 +241,16 @@ const ChatRoom = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={onKeyDown}
-            placeholder="메시지 보내기"
+            placeholder="메시지 입력"
             className="w-full h-full rounded-full pl-11 pr-10 text-sm bg-grey-11 outline-none"
           />
+          <button
+            aria-label="이모티콘"
+            type="button"
+            className="absolute w-[26px] h-[26px] bg-grey-07 rounded-full right-2 top-1/2 -translate-y-1/2 z-10 "
+          >
+            <StickerIcon className="w-5 h-5 -translate-x-[-3px]" />
+          </button>
         </div>
         <button
           aria-label="전송"

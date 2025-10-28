@@ -22,7 +22,7 @@ export default function FriendItem({ friend, onClick }: Props) {
               <img
                 src={friend.avatarUrl}
                 alt=""
-                className="icon-xl rounded-full object-cover"
+                className="w-full h-full icon-xl rounded-full object-cover"
               />
             ) : (
               <ProfileIcon className="w-full h-full" />

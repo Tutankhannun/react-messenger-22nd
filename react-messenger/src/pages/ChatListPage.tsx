@@ -18,7 +18,7 @@ type ChatPreview = {
   name: string;
   avatarUrl?: string;
   lastMessage: string;
-  lastMessageAt?: string | number | Date; // ← 시간 포함
+  lastMessageAt?: string | number | Date;
   unread: number;
 };
 export default function ChatsList() {

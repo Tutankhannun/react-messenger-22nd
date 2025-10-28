@@ -2,7 +2,7 @@
   {
     "name": "최지윤",
     "status": "집에 가고싶다",
-    "avatarUrl": "",
+    "avatarUrl": "/profiles/f1.png",
     "profileMusic": "",
     "favorite": false,
     "id": "f1",
@@ -26,7 +26,7 @@
   {
     "name": "나연",
     "status": "당분간 혼자만 가능",
-    "avatarUrl": "",
+    "avatarUrl": "/profiles/f3.png",
     "profileMusic": "",
     "favorite": false,
     "id": "f3",

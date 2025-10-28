@@ -1,0 +1,135 @@
+{
+  "c1": [
+    {
+      "id": "c1-m1",
+      "chatId": "c1",
+      "sender": "other",
+      "text": "과제 오늘까지야?",
+      "createdAt": "2025-09-28T10:30:00Z"
+    },
+    {
+      "id": "c1-m2",
+      "chatId": "c1",
+      "sender": "me",
+      "text": "응! 그거 오늘 오후까지 제출해야 된대",
+      "createdAt": "2025-09-28T10:31:00Z"
+    },
+    {
+      "id": "c1-m3",
+      "chatId": "c1",
+      "sender": "other",
+      "text": "아 진짜? 빨리 해야겠다. 고마워!",
+      "createdAt": "2025-09-28T10:31:30Z"
+    }
+  ],
+  "c2": [
+    {
+      "id": "c2-m1",
+      "chatId": "c2",
+      "sender": "other",
+      "text": "부스 전기 6시 마감이라 노트북 미리 충전해와야 할 듯",
+      "createdAt": "2025-09-28T11:00:00Z"
+    },
+    {
+      "id": "c2-m2",
+      "chatId": "c2",
+      "sender": "me",
+      "text": "오케이 확인!",
+      "createdAt": "2025-09-28T11:01:00Z"
+    },
+    {
+      "id": "c2-m3",
+      "chatId": "c2",
+      "sender": "other",
+      "text": "그럼 내일보자",
+      "createdAt": "2025-09-28T11:00:00Z"
+    },
+    {
+      "id": "c2-m4",
+      "chatId": "c2",
+      "sender": "other",
+      "text": "잠 좀 푹 자둬",
+      "createdAt": "2025-09-28T11:00:00Z"
+    }
+  ],
+  "c3": [
+    {
+      "id": "c3-m1",
+      "chatId": "c3",
+      "sender": "other",
+      "text": "부스 전기 6시 마감이라 노트북 미리 충전해와야 할 듯",
+      "createdAt": "2025-09-28T11:00:00Z"
+    },
+    {
+      "id": "c3-m2",
+      "chatId": "c3",
+      "sender": "me",
+      "text": "WoW",
+      "createdAt": "2025-09-28T11:01:00Z"
+    }
+  ],
+  "c4": [
+    {
+      "id": "c4-m1",
+      "chatId": "c4",
+      "sender": "other",
+      "text": "부스 전기 6시 마감이라 노트북 미리 충전해와야 할 듯",
+      "createdAt": "2025-09-28T11:00:00Z"
+    },
+    {
+      "id": "c4-m2",
+      "chatId": "c4",
+      "sender": "me",
+      "text": "제발 살려주세요",
+      "createdAt": "2025-09-28T11:01:00Z"
+    }
+  ],
+  "c5": [
+    {
+      "id": "c5-m1",
+      "chatId": "c5",
+      "sender": "other",
+      "text": "부스 전기 6시 마감이라 노트북 미리 충전해와야 할 듯",
+      "createdAt": "2025-09-28T11:00:00Z"
+    },
+    {
+      "id": "c5-m2",
+      "chatId": "c5",
+      "sender": "me",
+      "text": "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+      "createdAt": "2025-09-28T11:01:00Z"
+    }
+  ],
+  "c6": [
+    {
+      "id": "c6-m1",
+      "chatId": "c6",
+      "sender": "other",
+      "text": "부스 전기 6시 마감이라 노트북 미리 충전해와야 할 듯",
+      "createdAt": "2025-09-28T11:00:00Z"
+    },
+    {
+      "id": "c6-m2",
+      "chatId": "c6",
+      "sender": "me",
+      "text": "ㅇㅇ",
+      "createdAt": "2025-09-28T11:01:00Z"
+    }
+  ],
+  "c7": [
+    {
+      "id": "c7-m1",
+      "chatId": "c7",
+      "sender": "other",
+      "text": "부스 전기 6시 마감이라 노트북 미리 충전해와야 할 듯",
+      "createdAt": "2025-09-28T11:00:00Z"
+    },
+    {
+      "id": "c7-m2",
+      "chatId": "c7",
+      "sender": "me",
+      "text": "끄아ㅏㅏㅏ",
+      "createdAt": "2025-09-28T11:01:00Z"
+    }
+  ]
+}

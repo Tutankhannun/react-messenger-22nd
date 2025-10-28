@@ -52,18 +52,9 @@ const ProfilePage: React.FC = () => {
     );
   }
 
-  const cover = friend.avatarUrl || "/images/cover-placeholder.jpg";
-
   return (
     <div className="h-full flex items-center justify-center">
       <div className="relative w-full h-[var(--covover-image-height)] overflow-hidden">
-        <img
-          src={cover}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black" />
-
         {/* 아바타 + 이름 */}
         <div className="absolute left-0 right-0 bottom-28 flex flex-col items-center">
           <div className="h-24 w-24 rounded-full ring-1 ring-white overflow-hidden bg-white/20 grid place-items-center">
